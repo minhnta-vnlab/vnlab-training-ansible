@@ -1,5 +1,6 @@
 # Config for SSH
 ssh_username: <ssh-username>
+ssh_password: <ssh-password>
 ssh_pubkey: <ssh-public-key>
 # Config for Database Virtual machine
 database:
