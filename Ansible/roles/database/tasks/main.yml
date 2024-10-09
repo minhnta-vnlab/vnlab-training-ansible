@@ -1,2 +1,27 @@
 ---
 # tasks file for database
+- name: Create /ansible/ directory
+  file:
+    path: /ansible
+    state: directory
+
+- name: Clone vnlab-training-yii
+  git:
+    repo: https://github.com/minhnta-vnlab/vnlab-training-yii.git
+    dest: /ansible/
+    clone: yes
+    update: yes
+
+- name: Copy .env file
+  template:
+    src: .env.j2
+    dest: /ansible/.env
+
+- name: Building Docker containers
+  command: docker compose -f /ansible/docker-compose.database.yml build
+
+- name: Composing up Database in Docker
+  command: docker compose -f /ansible/docker-compose.database.yml up -d
+
+- name: Seeding database
+  command: docker exec postgresdb_container psql -U {{ database.postgres_username }} -d {{ database.postgres_db }} -f /data/seed.sql
