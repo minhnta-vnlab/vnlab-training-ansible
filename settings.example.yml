@@ -1,0 +1,12 @@
+# Config for SSH
+ssh_username: <ssh-username>
+ssh_pubkey: <ssh-public-key>
+# Config for Database Virtual machine
+database:
+  vm_ip: "192.168.33.21"
+  vm_name: "vnlab_database"
+
+# Config for Server Virtual machine
+server:
+  vm_ip: "192.168.33.22"
+  vm_name: "vnlab_server"
