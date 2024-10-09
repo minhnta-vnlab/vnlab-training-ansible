@@ -13,6 +13,8 @@ vagrant up
 echo "Opening SSH Connection to UbuntuServer VM"
 start cmd /k "vagrant ssh"
 
+cd ../..
+
 echo "Using Python to create environment for Ansible"
 
 :: Check if Python is installed
