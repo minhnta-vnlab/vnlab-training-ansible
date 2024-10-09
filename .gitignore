@@ -1,0 +1,4 @@
+settings.yml
+.vagrant
+inventory.ini
+venv

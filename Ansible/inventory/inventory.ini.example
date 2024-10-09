@@ -1,0 +1,8 @@
+[webservers]
+<webservers_ips>
+
+[databases]
+<databases_ips>
+
+[all:vars]
+ansible_ssh_user=<ssh_user>
