@@ -1,0 +1,66 @@
+---
+# tasks file for server
+- name: Include the PHP and Composer installation playbook
+  include_tasks: php_composer.yml
+
+- name: Create /ansible/ directory
+  file:
+    path: /ansible
+    state: directory
+
+- name: Changing permission for git clone
+  file:
+    path: /ansible
+    owner: "{{ ssh_username }}"
+    mode: '0755'
+    recurse: true
+
+- name: Clone vnlab-training-yii
+  git:
+    repo: https://github.com/minhnta-vnlab/vnlab-training-yii.git
+    dest: /ansible/
+    clone: yes
+    update: yes
+    force: yes
+
+- name: Copy .env file
+  template:
+    src: .env.j2
+    dest: /ansible/.env
+
+- name: Copy nginx.conf file
+  template:
+    src: nginx.conf.j2
+    dest: /ansible/docker/nginx/app.conf
+
+- name: Changing permission for Docker to write
+  file:
+    path: /ansible
+    mode: 'ugo+rwx'
+    recurse: true
+
+- name: Copy production environment backend files
+  copy:
+    src: backend/
+    dest: /ansible/backend/
+
+- name: Copy production environment common files
+  copy:
+    src: common/
+    dest: /ansible/common/
+
+- name: Copy production environment fronend files
+  copy:
+    src: frontend/
+    dest: /ansible/frontend/
+
+- name: Change to project directory and install Composer dependencies
+  command: composer install
+  args:
+    chdir: /ansible
+
+- name: Building Docker containers
+  command: docker compose -f /ansible/docker-compose.server.yml build
+
+- name: Composing up Server in Docker
+  command: docker compose -f /ansible/docker-compose.server.yml up -d

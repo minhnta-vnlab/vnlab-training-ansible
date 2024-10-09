@@ -1,0 +1,17 @@
+- name: Setting up database
+  vars_files:
+    - ../settings.yml
+  become: true
+  hosts: databases
+  roles:
+    - docker
+    - database
+  
+- name: Setting up server
+  vars_files:
+    - ../settings.yml
+  become: true
+  hosts: webservers
+  roles:
+    - docker
+    - server

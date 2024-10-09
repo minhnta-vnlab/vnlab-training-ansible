@@ -10,6 +10,10 @@ database:
     - guest: 5432
       host: 5432
 
+  postgres_db: <database>
+  postgres_username: <pg_username>
+  postgres_password: <pg_password>
+
 # Config for Server Virtual machine
 server:
   vm_ip: "192.168.33.22"
@@ -17,3 +21,7 @@ server:
   vm_port_forwarding:
     - guest: 80
       host: 80
+  
+  domains:
+    - frontend: 'y2aa-frontend.test'
+    - backend:  'y2aa-backend.test'
