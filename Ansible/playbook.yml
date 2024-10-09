@@ -1,0 +1,13 @@
+- name: Setting up database
+  become: true
+  hosts: databases
+  roles:
+    - docker
+    - database
+
+- name: Setting up server
+  become: true
+  hosts: webservers
+  roles:
+    - docker
+    - server
