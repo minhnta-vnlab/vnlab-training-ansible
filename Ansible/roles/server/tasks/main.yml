@@ -49,7 +49,7 @@
     src: common/
     dest: /ansible/common/
 
-- name: Copy production environment fronend files
+- name: Copy production environment frontend files
   copy:
     src: frontend/
     dest: /ansible/frontend/
