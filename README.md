@@ -30,6 +30,13 @@ server:
   domains:
     - frontend: 'y2aa-frontend.test'
     - backend:  'y2aa-backend.test'
+
+  # Allow IP to connect to your server
+  allow_ips:
+    - '192.168.33.1'
+    # Container subnet of your project
+    - '172.28.0.0/16'
+    # - 'all' # Allow all IPs
 ```
 
 Run `vm_up.bat` to start Vagrant and open 2 SSH Connection to your VM.
