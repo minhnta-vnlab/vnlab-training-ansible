@@ -3,15 +3,17 @@ server {
    client_max_body_size 128M;
    sendfile off;
 
-   allow 192.168.33.1;
    allow 127.0.0.1;
-   allow 172.18.0.0/16;
+   {% for ip in server.allow_ips %}
+   allow {{ ip }};
+   {% endfor %}
+
    deny all;
 
    listen 80; ## listen for ipv4
    #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
 
-   server_name y2aa-backend.test;
+   server_name {{ server.domains.backend }};
    root        /app/backend/web/;
    index       index.php;
 
@@ -50,7 +52,7 @@ server {
    listen 80; ## listen for ipv4
    #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
 
-   server_name y2aa-frontend.test;
+   server_name {{ server.domains.frontend }};
    root        /app/frontend/web/;
    index       index.php;
 
