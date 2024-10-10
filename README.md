@@ -48,7 +48,7 @@ Just in case you already have your own machines to run, manually edit the `Ansib
 ansible_ssh_user=<ssh_user>
 ```
 ### Ansible
-Run `playbook.yml` to setup everything up
+Run `playbook.yml` to setup everything
 ```
 ansible-playbook playbook.yml
 ```
