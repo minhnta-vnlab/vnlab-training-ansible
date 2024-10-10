@@ -36,7 +36,7 @@ Run `vm_up.bat` to start Vagrant and open 2 SSH Connection to your VM.
 ```
 ./vm_up.bat
 ```
-Just in case you already have a machines to run, manually edit the `Ansible/inventory/inventory.ini` file base on the example below:
+Just in case you already have your own machines to run, manually edit the `Ansible/inventory/inventory.ini` file base on the example below:
 ```ini
 [webservers]
 <webservers_ips>
